@@ -13,83 +13,83 @@ import (
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion7
 
-// FeedServiseClient is the client API for FeedServise service.
+// FeedServiceClient is the client API for FeedService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type FeedServiseClient interface {
+type FeedServiceClient interface {
 	CreateUserPost(ctx context.Context, in *CreateUserPostIn, opts ...grpc.CallOption) (*CreateUserPostOut, error)
 }
 
-type feedServiseClient struct {
+type feedServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewFeedServiseClient(cc grpc.ClientConnInterface) FeedServiseClient {
-	return &feedServiseClient{cc}
+func NewFeedServiceClient(cc grpc.ClientConnInterface) FeedServiceClient {
+	return &feedServiceClient{cc}
 }
 
-func (c *feedServiseClient) CreateUserPost(ctx context.Context, in *CreateUserPostIn, opts ...grpc.CallOption) (*CreateUserPostOut, error) {
+func (c *feedServiceClient) CreateUserPost(ctx context.Context, in *CreateUserPostIn, opts ...grpc.CallOption) (*CreateUserPostOut, error) {
 	out := new(CreateUserPostOut)
-	err := c.cc.Invoke(ctx, "/FeedServise/CreateUserPost", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/FeedService/CreateUserPost", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FeedServiseServer is the server API for FeedServise service.
-// All implementations must embed UnimplementedFeedServiseServer
+// FeedServiceServer is the server API for FeedService service.
+// All implementations must embed UnimplementedFeedServiceServer
 // for forward compatibility
-type FeedServiseServer interface {
+type FeedServiceServer interface {
 	CreateUserPost(context.Context, *CreateUserPostIn) (*CreateUserPostOut, error)
-	mustEmbedUnimplementedFeedServiseServer()
+	mustEmbedUnimplementedFeedServiceServer()
 }
 
-// UnimplementedFeedServiseServer must be embedded to have forward compatible implementations.
-type UnimplementedFeedServiseServer struct {
+// UnimplementedFeedServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedFeedServiceServer struct {
 }
 
-func (UnimplementedFeedServiseServer) CreateUserPost(context.Context, *CreateUserPostIn) (*CreateUserPostOut, error) {
+func (UnimplementedFeedServiceServer) CreateUserPost(context.Context, *CreateUserPostIn) (*CreateUserPostOut, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserPost not implemented")
 }
-func (UnimplementedFeedServiseServer) mustEmbedUnimplementedFeedServiseServer() {}
+func (UnimplementedFeedServiceServer) mustEmbedUnimplementedFeedServiceServer() {}
 
-// UnsafeFeedServiseServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to FeedServiseServer will
+// UnsafeFeedServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FeedServiceServer will
 // result in compilation errors.
-type UnsafeFeedServiseServer interface {
-	mustEmbedUnimplementedFeedServiseServer()
+type UnsafeFeedServiceServer interface {
+	mustEmbedUnimplementedFeedServiceServer()
 }
 
-func RegisterFeedServiseServer(s *grpc.Server, srv FeedServiseServer) {
-	s.RegisterService(&_FeedServise_serviceDesc, srv)
+func RegisterFeedServiceServer(s *grpc.Server, srv FeedServiceServer) {
+	s.RegisterService(&_FeedService_serviceDesc, srv)
 }
 
-func _FeedServise_CreateUserPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FeedService_CreateUserPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserPostIn)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FeedServiseServer).CreateUserPost(ctx, in)
+		return srv.(FeedServiceServer).CreateUserPost(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/FeedServise/CreateUserPost",
+		FullMethod: "/FeedService/CreateUserPost",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FeedServiseServer).CreateUserPost(ctx, req.(*CreateUserPostIn))
+		return srv.(FeedServiceServer).CreateUserPost(ctx, req.(*CreateUserPostIn))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _FeedServise_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "FeedServise",
-	HandlerType: (*FeedServiseServer)(nil),
+var _FeedService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "FeedService",
+	HandlerType: (*FeedServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateUserPost",
-			Handler:    _FeedServise_CreateUserPost_Handler,
+			Handler:    _FeedService_CreateUserPost_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -7,7 +7,7 @@
     - [CreateUserPostIn](#-CreateUserPostIn)
     - [CreateUserPostOut](#-CreateUserPostOut)
   
-    - [FeedServise](#-FeedServise)
+    - [FeedService](#-FeedService)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -56,9 +56,9 @@
  
 
 
-<a name="-FeedServise"></a>
+<a name="-FeedService"></a>
 
-### FeedServise
+### FeedService
 
 
 | Method Name | Request Type | Response Type | Description |

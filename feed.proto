@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "./feed-proto";
 
-service FeedServise {
+service FeedService {
     rpc CreateUserPost(CreateUserPostIn) returns (CreateUserPostOut){};
 }
 
