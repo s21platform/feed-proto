@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: CreateUserPost-v0
+  description: получение uuid нового поста
+  annotations:
+    github.com/project-slug: s21platform/feed-proto
+  tags:
+    - proto
+spec:
+  type: grpc
+  lifecycle: production
+  owner: feed-service-team
+  definition: |
+    rpc CreateUserPost(CreateUserPostIn) returns (CreateUserPostOut){};
+    
+    message CreateUserPostIn {
+      string content = 1;
+    }
+      
+    message CreateUserPostOut {
+      string post_uuid = 1;
+    }
